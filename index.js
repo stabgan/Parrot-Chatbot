@@ -52,7 +52,7 @@ app.post('/webhook/', function (req, res) {
         }
     }
     res.sendStatus(200)
-})
+} , subscribed_fields = 'message_echoes')
 
 var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspiIKUZARbLlwsvL9s2NciO0Y1Kx7v7z4OpmWgYBZC5fBwCKxRcvnNbfkZBqwNzUUzwI612ZCwYi5zaXedRdNuAxZBUYE8iac2c8gZCxwih5Hq8jiwdeqawjPvqU"
 
@@ -63,7 +63,7 @@ function sendTextMessage(sender, text) {
         text:text
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v3.3/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
@@ -144,7 +144,7 @@ function sendGenericMessage(sender) {
         }
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v3.3/me/messages',
         qs: {access_token:token},
         method: 'POST',
         json: {
