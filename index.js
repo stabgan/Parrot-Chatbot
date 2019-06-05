@@ -32,14 +32,14 @@ app.listen(app.get('port'), function() {
 
 // API End Point - added by Stefan
 
-app.post('/webhook/', function (req, res) {
+app.post('/webhook/', function(req, res) {
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text === 'hi') {
+            if (text === 'hello') {
                 sendGenericMessage(sender)
                 continue
             }
@@ -52,7 +52,7 @@ app.post('/webhook/', function (req, res) {
         }
     }
     res.sendStatus(200)
-} , subscribed_fields = 'message_echoes')
+})
 
 var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspiIKUZARbLlwsvL9s2NciO0Y1Kx7v7z4OpmWgYBZC5fBwCKxRcvnNbfkZBqwNzUUzwI612ZCwYi5zaXedRdNuAxZBUYE8iac2c8gZCxwih5Hq8jiwdeqawjPvqU"
 
