@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-    res.send(<a href ='https://m.me/stabganpage'>I'm a chatbot</a>)
+    res.send('https://m.me/stabganpage')
 })
 
 // for Facebook verification
