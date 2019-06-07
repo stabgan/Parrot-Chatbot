@@ -3,8 +3,10 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var unirest = require('unirest');
 var app = express()
-
-var text2 = "nothing"
+var weather = require('openweather-apis');
+ 
+    weather.setLang('en');
+    weather.setAPPID('6aa8478f4c0c55fe2ae9b1424cb7c900');
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -67,11 +69,10 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 function oxford(sender , word_id){
 
-    request('api.openweathermap.org/data/2.5/weather?q=London&appid=6aa8478f4c0c55fe2ae9b1424cb7c900', function (error, response, body) {
-    var temp = JSON.stringify(body)
-    temp = JSON.parse(temp)
-    text2 = temp.weather[0].description
-});
+    weather.setCity(word_id);
+    weather.getDescription(function(err, desc){
+        var text2 = desc;
+    });
 
     sendTextMessage(sender , text2)
 }
