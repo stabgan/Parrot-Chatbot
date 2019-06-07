@@ -31,11 +31,13 @@ app.post('/webhook/', function(req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (['hello' , 'Hello' , 'Hii' , 'hola' , 'hey' , 'yo' , 'test' , 'hii'].indexOf(text) > -1) {
+            if (text === 'hello') {
                 sendGenericMessage(sender)
                 continue
             }
-
+            if (Math.floor(Math.random() * 5) == 3){
+                sendTextMessage(sender, "I'm a bot and I have a pet parrot who will mimic you haha!\nType hello to see my owner's social media links.")
+            }
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
 
         }
