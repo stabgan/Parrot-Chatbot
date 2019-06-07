@@ -68,7 +68,8 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 function oxford(sender , word_id){
 
     request('api.openweathermap.org/data/2.5/weather?q=London&appid=6aa8478f4c0c55fe2ae9b1424cb7c900', function (error, response, body) {
-    text2 = body.weather[0].description
+    var temp = JSON.parse(body)
+    text2 = temp.weather[0].description
 });
 
     sendTextMessage(sender , text2)
