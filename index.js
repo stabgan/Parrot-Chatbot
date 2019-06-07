@@ -53,7 +53,7 @@ app.post('/webhook/', function(req, res) {
     }
     res.sendStatus(200)
 })
-var token = 'EAAHcUSVmZBjMBAGe6MRfzIJ9XfBck0irEXHg9qbZC6ifEuJ5rhY6TVeKbn1J5TRfHrTaYzujB4PkB7wJ5gQcVKaRp1KYPHfmCE2AOjMWrWhobZAUijqlCkw3D85cGS1B9HSIOCMRZBTLZBjqMvXjAxQ5cT6sxktA4Ftrv9ea3YRIDyIdf53GA'
+var token = 'EAAHcUSVmZBjMBAD9P7FBXZBcVtN8sXUupdJlcTeXSjtHI4pM8yVT9gh4ZCHGzEef4NWaPdBJHigI9RivLLM3AS7OFpJjvQQHZAB4JGQjXfVT4ZCpVZCVGfSfNNTUc6VRn85GAdKW76MZAkI8ZA1EoiqH3xbDGGj4RuZCztneA3eENwizvTiKolB3X'
 // function to echo back messages - added by Stefan
 function weatherX(sender , word_id){
     weather.setCity(word_id);
