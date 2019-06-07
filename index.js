@@ -61,8 +61,26 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 
 function oxford(word_id){
-    let url = 'https://od-api-demo.oxforddictionaries.com:443/api/v1/entries/english/'+word_id+'/sentences'
+    let url = 'https://od-api-demo.oxforddictionaries.com:443/api/v1/entries/en/'+word_id+'/synonyms'
+
     request(url, function (err, response, body) {
+  if(err){
+    console.log('error:', error);
+    messageData = "nothing"
+  } else {
+    let body = JSON.parse(body)
+    messageData = body.results;
+  }
+})
+    request({
+        url: 'https://graph.facebook.com/v3.3/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function (err, response, body) {
       if(err){
         console.log('error:', error);
       } else {
