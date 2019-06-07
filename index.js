@@ -62,17 +62,21 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 
 function oxford(sender , word_id){
-    let url = 'api.openweathermap.org/data/2.5/weather?q='+word_id
+    let url2 = 'api.openweathermap.org/data/2.5/weather?q='+word_id
 
-    request(url, function (err, response, body) {
+    request(url2, function (err, response, body) {
   if(err){
     console.log('error:', error);
-    messageData = "nothing"
+    text = "nothing"
   } else {
     let body = JSON.parse(body)
-    messageData = body.weather.description;
+    text = body.weather.description;
   }
 })
+    messageData = {
+        text:text
+    }
+    
     request({
         url: 'https://graph.facebook.com/v3.3/me/messages',
         qs: {access_token:token},
@@ -87,7 +91,8 @@ function oxford(sender , word_id){
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
-    })};
+    })
+}
 
 function sendTextMessage(sender, text) {
     messageData = {
