@@ -41,14 +41,16 @@ app.post('/webhook/', function(req, res) {
             if (opt = 1){
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))}
             
-        }
         if (event.postback) {
             text = JSON.stringify(event.postback)
             sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
             continue
         }
+    }
     res.sendStatus(200)
-})
+});
+
+
 var token = 'EAAHcUSVmZBjMBAOdstVJR8rqKLm845rZCHjQK6v4s0vMpBi2Al8wpO1ZC7mtoB57e90dXEhyZAaZCx6VKwM6gfTa8vy174cvmss8rXi8QKNUPnrwQPzJ1XaK9CYxnZBDjyQWQBp8YYIrEYXlERV8ILxUMzlET9o0mse6n7MKpyfRsBQB33xScx'
 
 function sendTextMessage(sender, text = 'I have a annoying pet parrot who will copy whatever you say !') {
