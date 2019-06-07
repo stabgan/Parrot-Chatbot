@@ -34,13 +34,12 @@ app.post('/webhook/', function(req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (opt == 0) {
-                sendGenericMessage(sender)
-                opt = 1
-                continue
+            sendGenericMessage(sender)
+            opt = 1
+            continue
             }
-
-            sendTextMessage(sender, "parrot: " + text.substring(0, 200))
+            if (opt = 1){
+            sendTextMessage(sender, "parrot: " + text.substring(0, 200))}
             
         }
         if (event.postback) {
