@@ -75,18 +75,21 @@ function sendTextMessage(sender, text) {
 function sendGenericMessage(sender) {
 
     messageData = {
+
         "attachment": {
 
             "type": "template",
+
             "payload": {
 
                 "template_type": "generic",
 
-                "elements": [{
+                "elements": [
+                    {
 
                     "title": "Portfolio",
 
-                    "subtitle": "Portfolio Website",
+                    "subtitle": "View my Owner's portfolio website",
 
                     "image_url": "https://images.unsplash.com/photo-1541422348463-9bc715520974?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
 
@@ -104,9 +107,10 @@ function sendGenericMessage(sender) {
 
                         "url": "https://play.google.com/store/apps/details?id=com.whale.calculator&hl=en_IN",
 
-                        "title": "Download Android app"
+                        "title": "Click to download his app"
 
-                    }, {
+                    }],
+                    {
 
                     "title": "LinkedIn",
 
@@ -140,9 +144,7 @@ function sendGenericMessage(sender) {
 
                         "title": "Click to View"
 
-                    }],
-
-                }],
+                    }]
 
                 }]  
 
