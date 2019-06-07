@@ -86,7 +86,7 @@ function sendGenericMessage(sender) {
 
                     "title": "Portfolio",
 
-                    "subtitle": "View my Owner's portfolio website",
+                    "subtitle": "Portfolio Website",
 
                     "image_url": "https://images.unsplash.com/photo-1541422348463-9bc715520974?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
 
