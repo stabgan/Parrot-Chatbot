@@ -107,7 +107,7 @@ function sendGenericMessage(sender) {
 
                         "url": "https://play.google.com/store/apps/details?id=com.whale.calculator&hl=en_IN",
 
-                        "title": "Click to download his app"
+                        "title": "Download his app"
 
                     }]
                 },
