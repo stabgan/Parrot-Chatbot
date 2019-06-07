@@ -1,12 +1,13 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
-var unirest = require('unirest');
 var app = express()
 var weather = require('openweather-apis');
+
+var text2 = "none"
  
-    weather.setLang('en');
-    weather.setAPPID('6aa8478f4c0c55fe2ae9b1424cb7c900');
+weather.setLang('en');
+weather.setAPPID('6aa8478f4c0c55fe2ae9b1424cb7c900');
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -49,8 +50,8 @@ app.post('/webhook/', function(req, res) {
                 continue
             }
             
-            //sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            oxford(sender , text)
+            sendTextMessage(sender, "parrot: " + text.substring(0, 200))
+            weather(sender , text)
 
         }
         if (event.postback) {
@@ -62,16 +63,17 @@ app.post('/webhook/', function(req, res) {
     res.sendStatus(200)
 })
 
-var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspiIKUZARbLlwsvL9s2NciO0Y1Kx7v7z4OpmWgYBZC5fBwCKxRcvnNbfkZBqwNzUUzwI612ZCwYi5zaXedRdNuAxZBUYE8iac2c8gZCxwih5Hq8jiwdeqawjPvqU"
+var token = 'EAAHcUSVmZBjMBAGe6MRfzIJ9XfBck0irEXHg9qbZC6ifEuJ5rhY6TVeKbn1J5TRfHrTaYzujB4PkB7wJ5gQcVKaRp1KYPHfmCE2AOjMWrWhobZAUijqlCkw3D85cGS1B9HSIOCMRZBTLZBjqMvXjAxQ5cT6sxktA4Ftrv9ea3YRIDyIdf53GA'
 
 // function to echo back messages - added by Stefan
 
 
-function oxford(sender , word_id){
+function weather(sender , word_id){
 
     weather.setCity(word_id);
     weather.getDescription(function(err, desc){
-        var text2 = desc;
+    console.log(desc);
+    text2 = desc;
     });
 
     sendTextMessage(sender , text2)
