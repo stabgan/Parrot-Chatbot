@@ -51,7 +51,7 @@ app.post('/webhook/', function(req, res) {
             }
             
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            weather(sender , text)
+            weatherX(sender , text)
 
         }
         if (event.postback) {
@@ -68,7 +68,7 @@ var token = 'EAAHcUSVmZBjMBAGe6MRfzIJ9XfBck0irEXHg9qbZC6ifEuJ5rhY6TVeKbn1J5TRfHr
 // function to echo back messages - added by Stefan
 
 
-function weather(sender , word_id){
+function weatherX(sender , word_id){
 
     weather.setCity(word_id);
     weather.getDescription(function(err, desc){
