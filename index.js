@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
+var unirest = require('unirest');
 var app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -63,18 +64,15 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 
 function oxford(sender , word_id){
-    var text2 = "nothing"
-    //let url2 = 'api.openweathermap.org/data/2.5/weather?q='+word_id
 
-    request('api.openweathermap.org/data/2.5/weather?q=London', function (err, response, body) {
-  if(err){
-    console.log('error:', err);
-    text2 = "nothing"
-  } else {
-    let body = JSON.parse(body)
-    text2 = body.weather.description;
-  }
-})
+    unirest.post("https://yodish.p.rapidapi.com/yoda.json?text=Master+Obiwan+has+lost+a+planet.")
+    .header("X-RapidAPI-Host", "yodish.p.rapidapi.com")
+    .header("X-RapidAPI-Key", "390e89a98fmsh3722d088773365ap152dfejsnf04d1dff7295")
+    .header("Content-Type", "application/x-www-form-urlencoded")
+    .end(function (result) {
+    var text2 = result.body;
+});
+    
     sendTextMessage(sender , text2)
 }
 
