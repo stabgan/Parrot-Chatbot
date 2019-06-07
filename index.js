@@ -109,7 +109,8 @@ function sendGenericMessage(sender) {
 
                         "title": "Click to download his app"
 
-                    }],
+                    }]
+                },
                     {
 
                     "title": "LinkedIn",
