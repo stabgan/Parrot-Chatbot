@@ -2,10 +2,6 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
-var weather = require('openweather-apis');
- 
-weather.setLang('en');
-weather.setAPPID('6aa8478f4c0c55fe2ae9b1424cb7c900');
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -17,7 +13,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-    res.send('please visit https://m.me/stabganpage')
+    res.send('Hello world, I am a chat bot')
 })
 
 // for Facebook verification
@@ -43,15 +39,11 @@ app.post('/webhook/', function(req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text in ['hello','hi','Hello','yo','hii','hey']) {
+            if (text === 'hello') {
                 sendGenericMessage(sender)
                 continue
             }
-            
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            //weatherX(sender , text)
-
-
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -62,24 +54,9 @@ app.post('/webhook/', function(req, res) {
     res.sendStatus(200)
 })
 
-var token = 'EAAHcUSVmZBjMBAGe6MRfzIJ9XfBck0irEXHg9qbZC6ifEuJ5rhY6TVeKbn1J5TRfHrTaYzujB4PkB7wJ5gQcVKaRp1KYPHfmCE2AOjMWrWhobZAUijqlCkw3D85cGS1B9HSIOCMRZBTLZBjqMvXjAxQ5cT6sxktA4Ftrv9ea3YRIDyIdf53GA'
+var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspiIKUZARbLlwsvL9s2NciO0Y1Kx7v7z4OpmWgYBZC5fBwCKxRcvnNbfkZBqwNzUUzwI612ZCwYi5zaXedRdNuAxZBUYE8iac2c8gZCxwih5Hq8jiwdeqawjPvqU"
 
 // function to echo back messages - added by Stefan
-
-
-function weatherX(sender , word_id){
-
-    weather.setCity(word_id);
-    weather.getDescription(function(err, desc){
-    if (err) {
-            console.log('Error sending messages: ', err)
-            text2 = 'enter correctly';
-        }
-    else {
-    text2 = desc; }
-    });
-    sendTextMessage(sender , text2)
-}
 
 function sendTextMessage(sender, text) {
     messageData = {
@@ -98,14 +75,9 @@ function sendTextMessage(sender, text) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
-            console.log(messageData.text)
         }
     })
 }
-
-
-// Send an test message back as two cards.
-
 function sendGenericMessage(sender) {
     messageData = {
         "attachment": {
