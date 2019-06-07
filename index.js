@@ -25,6 +25,7 @@ app.listen(app.get('port'), function() {
 })
 
 opt = 0
+setInterval(function(){ opt = 0; }, 10000)
 
 app.post('/webhook/', function(req, res) {
     messaging_events = req.body.entry[0].messaging
@@ -40,7 +41,7 @@ app.post('/webhook/', function(req, res) {
             }
 
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            setInterval(function(){ opt = 0; }, 10000)
+            
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -52,7 +53,7 @@ app.post('/webhook/', function(req, res) {
 })
 var token = 'EAAHcUSVmZBjMBAOdstVJR8rqKLm845rZCHjQK6v4s0vMpBi2Al8wpO1ZC7mtoB57e90dXEhyZAaZCx6VKwM6gfTa8vy174cvmss8rXi8QKNUPnrwQPzJ1XaK9CYxnZBDjyQWQBp8YYIrEYXlERV8ILxUMzlET9o0mse6n7MKpyfRsBQB33xScx'
 
-function sendTextMessage(sender, text) {
+function sendTextMessage(sender, text = 'I have a annoying pet parrot who will copy whatever you say !') {
     messageData = {
         text:text
     }
@@ -76,7 +77,6 @@ function sendTextMessage(sender, text) {
 function sendGenericMessage(sender) {
 
     messageData = {
-        "text" : "Check out my owner's portfolio !\nI have a pet parrot who can be annoying"
 
         "attachment": {
 
@@ -184,5 +184,7 @@ function sendGenericMessage(sender) {
         }
 
     })
+    if (opt == 0){
+    sendTextMessage(sender)}
 
 }
