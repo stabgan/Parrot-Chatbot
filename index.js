@@ -4,6 +4,8 @@ var request = require('request')
 var unirest = require('unirest');
 var app = express()
 
+var text2 = "nothing"
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -14,7 +16,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-    res.send('https://m.me/stabganpage')
+    res.send('please visit https://m.me/stabganpage')
 })
 
 // for Facebook verification
@@ -66,7 +68,8 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 function oxford(sender , word_id){
 
     request('api.openweathermap.org/data/2.5/weather?q=London&appid=6aa8478f4c0c55fe2ae9b1424cb7c900', function (error, response, body) {
-    var text2 = JSON.parse(body).weather.description;
+    body = JSON.parse(body);
+    text2 = body.weather[0].description
 });
 
     sendTextMessage(sender , text2)
