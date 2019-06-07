@@ -73,8 +73,6 @@ function sendTextMessage(sender, text) {
 function sendGenericMessage(sender) {
 
     messageData = {
-        "text" : "Check out my owner's portfolio !\nI have a parrot pet who can be annoying"
-
         "attachment": {
 
             "type": "template",
