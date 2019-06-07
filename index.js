@@ -23,7 +23,9 @@ app.get('/webhook/', function (req, res) {
 app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'))
 })
-// API End Point - added by Stefan
+
+opt = 0
+
 app.post('/webhook/', function(req, res) {
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
@@ -31,13 +33,14 @@ app.post('/webhook/', function(req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text === 'hello') {
+            if (opt == 0) {
                 sendGenericMessage(sender)
+                opt = 1
                 continue
             }
 
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-
+            setInterval(function(){ opt = 0; }, 10000)
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -73,6 +76,7 @@ function sendTextMessage(sender, text) {
 function sendGenericMessage(sender) {
 
     messageData = {
+        "text" : "Check out my owner's portfolio !\nI have a pet parrot who can be annoying"
 
         "attachment": {
 
@@ -82,6 +86,30 @@ function sendGenericMessage(sender) {
                 "template_type": "generic",
 
                 "elements": [{
+
+                    "title": "Portfolio",
+
+                    "subtitle": "View my Owner's portfolio website",
+
+                    "image_url": "https://images.unsplash.com/photo-1541422348463-9bc715520974?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+
+                    "buttons": [{
+
+                        "type": "web_url",
+
+                        "url": "https://stabgan.github.io",
+
+                        "title": "Click to View"
+
+                    },{
+
+                        "type": "web_url",
+
+                        "url": "https://play.google.com/store/apps/details?id=com.whale.calculator&hl=en_IN",
+
+                        "title": "Download Android app"
+
+                    }, {
 
                     "title": "LinkedIn",
 
@@ -115,41 +143,9 @@ function sendGenericMessage(sender) {
 
                         "title": "Click to View"
 
-                    },{
-
-                        "type": "postback",
-
-                        "title": "What are his interests ?",
-
-                        "payload": "He is interested in AI , ML , DL , Game Developement , UI/UX , Android , Backend etc ",
-
                     }],
 
-                },  {
-
-                    "title": "Portfolio",
-
-                    "subtitle": "View my Owner's portfolio website",
-
-                    "image_url": "https://images.unsplash.com/photo-1541422348463-9bc715520974?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-
-                    "buttons": [{
-
-                        "type": "web_url",
-
-                        "url": "https://stabgan.github.io",
-
-                        "title": "Click to View"
-
-                    },{
-
-                        "type": "web_url",
-
-                        "url": "https://play.google.com/store/apps/details?id=com.whale.calculator&hl=en_IN",
-
-                        "title": "Click to download his app"
-
-                    }],
+                }],
 
                 }]  
 
