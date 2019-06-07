@@ -2,11 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
-var weather = require('openweather-apis');
-var text2 = "none"
- 
-weather.setLang('en');
-weather.setAPPID('6aa8478f4c0c55fe2ae9b1424cb7c900');
+
 app.set('port', (process.env.PORT || 5000))
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}))
@@ -41,8 +37,6 @@ app.post('/webhook/', function(req, res) {
             }
 
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            weatherX(sender , text)
-            //weatherX(sender , text)
 
         }
         if (event.postback) {
@@ -55,14 +49,7 @@ app.post('/webhook/', function(req, res) {
 })
 var token = 'EAAHcUSVmZBjMBAD9P7FBXZBcVtN8sXUupdJlcTeXSjtHI4pM8yVT9gh4ZCHGzEef4NWaPdBJHigI9RivLLM3AS7OFpJjvQQHZAB4JGQjXfVT4ZCpVZCVGfSfNNTUc6VRn85GAdKW76MZAkI8ZA1EoiqH3xbDGGj4RuZCztneA3eENwizvTiKolB3X'
 // function to echo back messages - added by Stefan
-function weatherX(sender , word_id){
-    weather.setCity(word_id);
-    weather.getDescription(function(err, desc){
-    console.log(desc);
-    text2 = desc;
-    });
-    sendTextMessage(sender , text2)
-}
+
 function sendTextMessage(sender, text) {
     messageData = {
         text:text
