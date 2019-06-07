@@ -43,7 +43,8 @@ app.post('/webhook/', function(req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            oxford(text)
+            else{
+            oxford(sender , text)}
             //sendTextMessage(sender, "parrot: " + text.substring(0, 200))
         }
         if (event.postback) {
@@ -60,7 +61,7 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 // function to echo back messages - added by Stefan
 
 
-function oxford(word_id){
+function oxford(sender , word_id){
     let url = 'https://od-api-demo.oxforddictionaries.com:443/api/v1/entries/en/'+word_id+'/synonyms'
 
     request(url, function (err, response, body) {
@@ -69,7 +70,7 @@ function oxford(word_id){
     messageData = "nothing"
   } else {
     let body = JSON.parse(body)
-    messageData = body.results;
+    messageData = body.results.lexicalEntries;
   }
 })
     request({
@@ -80,13 +81,13 @@ function oxford(word_id){
             recipient: {id:sender},
             message: messageData,
         }
-    }, function (err, response, body) {
-      if(err){
-        console.log('error:', error);
-      } else {
-        console.log('body:', body);
-      }
-})};
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })};
 
 function sendTextMessage(sender, text) {
     messageData = {
