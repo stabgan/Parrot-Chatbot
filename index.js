@@ -24,7 +24,7 @@ app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'))
 })
 
-opt = 0
+var opt = 0
 setInterval(function(){ opt = 0; }, 10000)
 
 app.post('/webhook/', function(req, res) {
