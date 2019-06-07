@@ -3,8 +3,6 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 var weather = require('openweather-apis');
-
-var text2 = "none"
  
 weather.setLang('en');
 weather.setAPPID('6aa8478f4c0c55fe2ae9b1424cb7c900');
@@ -79,7 +77,6 @@ function weatherX(sender , word_id){
     else {
     text2 = desc; }
     });
-
     sendTextMessage(sender , text2)
 }
 
@@ -100,6 +97,7 @@ function sendTextMessage(sender, text) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
+            console.log(messageData)
         }
     })
 }
