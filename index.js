@@ -43,18 +43,14 @@ app.post('/webhook/', function(req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text === 'hello') {
+            if (text in ['hello','hi','Hello','yo','hii','hey']) {
                 sendGenericMessage(sender)
                 continue
             }
             
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            try {
-            weatherX(sender , text)
-        }
-        catch(err){
-            res.sendStatus(200)
-        }
+            //weatherX(sender , text)
+
 
         }
         if (event.postback) {
@@ -102,7 +98,7 @@ function sendTextMessage(sender, text) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
-            console.log(messageData)
+            console.log(messageData.text)
         }
     })
 }
@@ -117,55 +113,39 @@ function sendGenericMessage(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "Ai Chat Bot Communities",
-                    "subtitle": "Communities to Follow",
-                    "image_url": "http://1u88jj3r4db2x4txp44yqfj1.wpengine.netdna-cdn.com/wp-content/uploads/2016/04/chatbot-930x659.jpg",
+                    "title": "LinkedIn",
+                    "subtitle": "Connect with my owner !",
+                    "image_url": "https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png",
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://www.facebook.com/groups/aichatbots/",
-                        "title": "FB Chatbot Group"
-                    }, {
-                        "type": "web_url",
-                        "url": "https://www.reddit.com/r/Chat_Bots/",
-                        "title": "Chatbots on Reddit"
-                    },{
-                        "type": "web_url",
-                        "url": "https://twitter.com/aichatbots",
-                        "title": "Chatbots on Twitter"
+                        "url": "https://linkedin.com/in/stabgan",
+                        "title": "Click to connect"
                     }],
                 }, {
-                    "title": "Chatbots FAQ",
-                    "subtitle": "Aking the Deep Questions",
-                    "image_url": "https://tctechcrunch2011.files.wordpress.com/2016/04/facebook-chatbots.png?w=738",
+                    "title": "Github",
+                    "subtitle": "View my Owner's projects",
+                    "image_url": "https://i.vimeocdn.com/video/253024709.webp?mw=900&mh=508&q=70",
                     "buttons": [{
-                        "type": "postback",
-                        "title": "What's the benefit?",
-                        "payload": "Chatbots make content interactive instead of static",
+                        "type": "web_url",
+                        "url": "https://github.com/stabgan",
+                        "title": "Click to View"
                     },{
                         "type": "postback",
-                        "title": "What can Chatbots do",
-                        "payload": "One day Chatbots will control the Internet of Things! You will be able to control your homes temperature with a text",
-                    }, {
-                        "type": "postback",
-                        "title": "The Future",
-                        "payload": "Chatbots are fun! One day your BFF might be a Chatbot",
+                        "title": "What are his interests ?",
+                        "payload": "He is interested in AI , ML , DL , Game Developement , UI/UX , Android , Backend etc ",
                     }],
                 },  {
-                    "title": "Learning More",
-                    "subtitle": "Aking the Deep Questions",
-                    "image_url": "http://www.brandknewmag.com/wp-content/uploads/2015/12/cortana.jpg",
+                    "title": "Portfolio",
+                    "subtitle": "View my Owner's portfolio website",
+                    "image_url": "https://images.unsplash.com/photo-1541422348463-9bc715520974?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
                     "buttons": [{
-                        "type": "postback",
-                        "title": "AIML",
-                        "payload": "Checkout Artificial Intelligence Mark Up Language. Its easier than you think!",
+                        "type": "web_url",
+                        "url": "https://stabgan.github.io",
+                        "title": "Click to View"
                     },{
-                        "type": "postback",
-                        "title": "Machine Learning",
-                        "payload": "Use python to teach your maching in 16D space in 15min",
-                    }, {
-                        "type": "postback",
-                        "title": "Communities",
-                        "payload": "Online communities & Meetups are the best way to stay ahead of the curve!",
+                        "type": "web_url",
+                        "url": "https://play.google.com/store/apps/details?id=com.whale.calculator&hl=en_IN",
+                        "title": "Click to download his app"
                     }],
                 }]  
             } 
