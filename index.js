@@ -43,9 +43,9 @@ app.post('/webhook/', function(req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            else{
-            oxford(sender , text)}
-            //sendTextMessage(sender, "parrot: " + text.substring(0, 200))
+            
+            oxford(sender , text)
+            sendTextMessage(sender, "parrot: " + text.substring(0, 200))
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -62,7 +62,7 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 
 function oxford(sender , word_id){
-    let url = 'https://od-api-demo.oxforddictionaries.com:443/api/v1/entries/en/'+word_id+'/synonyms'
+    let url = 'api.openweathermap.org/data/2.5/weather?q='+word_id
 
     request(url, function (err, response, body) {
   if(err){
@@ -70,7 +70,7 @@ function oxford(sender , word_id){
     messageData = "nothing"
   } else {
     let body = JSON.parse(body)
-    messageData = body.results.lexicalEntries;
+    messageData = body.weather.description;
   }
 })
     request({
