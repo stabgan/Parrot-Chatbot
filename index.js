@@ -44,8 +44,9 @@ app.post('/webhook/', function(req, res) {
                 continue
             }
             
-            oxford(sender , text)
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
+            oxford(sender , text)
+
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -62,11 +63,12 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 
 function oxford(sender , word_id){
+    let text = "nothing"
     let url2 = 'api.openweathermap.org/data/2.5/weather?q='+word_id
 
     request(url2, function (err, response, body) {
   if(err){
-    console.log('error:', error);
+    console.log('error:', err);
     text = "nothing"
   } else {
     let body = JSON.parse(body)
@@ -76,7 +78,7 @@ function oxford(sender , word_id){
     messageData = {
         text:text
     }
-    
+
     request({
         url: 'https://graph.facebook.com/v3.3/me/messages',
         qs: {access_token:token},
