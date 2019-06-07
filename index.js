@@ -51,7 +51,7 @@ app.post('/webhook/', function(req, res) {
             }
             
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            weatherX(sender , text)
+            //weatherX(sender , text)
 
         }
         if (event.postback) {
