@@ -65,14 +65,12 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 function oxford(sender , word_id){
 
-    unirest.post("https://yodish.p.rapidapi.com/yoda.json?text=Master+Obiwan+has+lost+a+planet.")
-    .header("X-RapidAPI-Host", "yodish.p.rapidapi.com")
-    .header("X-RapidAPI-Key", "390e89a98fmsh3722d088773365ap152dfejsnf04d1dff7295")
-    .header("Content-Type", "application/x-www-form-urlencoded")
+    unirest.post("api.openweathermap.org/data/2.5/weather?q=London")
     .end(function (result) {
-    var text2 = result.body;
+    var text2 = JSON.parse(result.body)
+    text2 = text2.weather.description
 });
-    
+
     sendTextMessage(sender , text2)
 }
 
