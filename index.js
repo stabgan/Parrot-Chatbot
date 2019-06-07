@@ -45,7 +45,7 @@ app.post('/webhook/', function(req, res) {
                 continue
             }
             
-            sendTextMessage(sender, "parrot: " + text.substring(0, 200))
+            //sendTextMessage(sender, "parrot: " + text.substring(0, 200))
             oxford(sender , text)
 
         }
@@ -65,10 +65,8 @@ var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspi
 
 function oxford(sender , word_id){
 
-    unirest.post("api.openweathermap.org/data/2.5/weather?q=London")
-    .end(function (result) {
-    var text2 = JSON.parse(result.body)
-    text2 = text2.weather.description
+    request('api.openweathermap.org/data/2.5/weather?q=London&appid=6aa8478f4c0c55fe2ae9b1424cb7c900', function (error, response, body) {
+    var text2 = JSON.parse(body).weather.description;
 });
 
     sendTextMessage(sender , text2)
