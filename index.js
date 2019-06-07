@@ -43,7 +43,8 @@ app.post('/webhook/', function(req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            sendTextMessage(sender, "parrot: " + text.substring(0, 200))
+            oxford(text)
+            //sendTextMessage(sender, "parrot: " + text.substring(0, 200))
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
@@ -57,6 +58,17 @@ app.post('/webhook/', function(req, res) {
 var token = "EAAHcUSVmZBjMBAMlHJZA05ide7qONeGZBsPY7DHlex4mUqIDbkDwoLkZCzeZBffspiIKUZARbLlwsvL9s2NciO0Y1Kx7v7z4OpmWgYBZC5fBwCKxRcvnNbfkZBqwNzUUzwI612ZCwYi5zaXedRdNuAxZBUYE8iac2c8gZCxwih5Hq8jiwdeqawjPvqU"
 
 // function to echo back messages - added by Stefan
+
+
+function oxford(word_id){
+    let url = 'https://od-api-demo.oxforddictionaries.com:443/api/v1/entries/english/'+word_id+'/sentences'
+    request(url, function (err, response, body) {
+      if(err){
+        console.log('error:', error);
+      } else {
+        console.log('body:', body);
+      }
+})};
 
 function sendTextMessage(sender, text) {
     messageData = {
