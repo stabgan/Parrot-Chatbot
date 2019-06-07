@@ -51,7 +51,7 @@ app.post('/webhook/', function(req, res) {
             }
             
             sendTextMessage(sender, "parrot: " + text.substring(0, 200))
-            //weatherX(sender , text)
+            weatherX(sender , text)
 
         }
         if (event.postback) {
@@ -72,8 +72,12 @@ function weatherX(sender , word_id){
 
     weather.setCity(word_id);
     weather.getDescription(function(err, desc){
-    console.log(desc);
-    text2 = desc;
+    if (err) {
+            console.log('Error sending messages: ', err)
+            text2 = 'enter correctly';
+        }
+    else {
+    text2 = desc; }
     });
 
     sendTextMessage(sender , text2)
