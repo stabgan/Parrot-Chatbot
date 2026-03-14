@@ -1,24 +1,17 @@
 {
-  "name": "parrot-chatbot",
-  "version": "2.0.0",
-  "description": "A Facebook Messenger chatbot that parrots back your messages with a playful twist.",
+  "name": "parrot",
+  "version": "1.0.0",
+  "description": "1st try in creating a chatbot in node.js",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"No tests specified\" && exit 0"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stabgan/Parrot-Chatbot.git"
   },
   "keywords": [
-    "chatbot",
-    "facebook-messenger",
-    "parrot",
-    "bot"
+    "chatbot"
   ],
   "author": "Kaustabh Ganguly",
   "license": "MIT",
@@ -27,6 +20,10 @@
   },
   "homepage": "https://github.com/stabgan/Parrot-Chatbot#readme",
   "dependencies": {
-    "express": "^4.21.0"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "openweather-apis": "^4.0.0",
+    "request": "^2.88.0",
+    "unirest": "^0.6.0"
   }
 }
