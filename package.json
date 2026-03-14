@@ -1,17 +1,24 @@
 {
-  "name": "parrot",
-  "version": "1.0.0",
-  "description": "1st try in creating a chatbot in node.js",
+  "name": "parrot-chatbot",
+  "version": "2.0.0",
+  "description": "A Facebook Messenger chatbot that echoes messages back like a parrot",
   "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"No tests configured\" && exit 0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stabgan/Parrot-Chatbot.git"
   },
   "keywords": [
-    "chatbot"
+    "chatbot",
+    "messenger",
+    "facebook",
+    "parrot"
   ],
   "author": "Kaustabh Ganguly",
   "license": "MIT",
@@ -20,10 +27,6 @@
   },
   "homepage": "https://github.com/stabgan/Parrot-Chatbot#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "openweather-apis": "^4.0.0",
-    "request": "^2.88.0",
-    "unirest": "^0.6.0"
+    "express": "^4.21.0"
   }
 }
